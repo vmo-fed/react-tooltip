@@ -1,0 +1,19 @@
+{
+  "name": "@vmo-fed/react-tooltip",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vmo-fed/react-tooltip.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vmo-fed/react-tooltip/issues"
+  },
+  "homepage": "https://github.com/vmo-fed/react-tooltip#readme"
+}
