@@ -77,6 +77,34 @@ var styles = {
       top: '50%',
       'margin-top': '-7px'
     }
+  },
+  bottom: {
+    '&:after': {
+      content: '""',
+      display: 'block',
+      position: 'absolute',
+      'border-top': 'none',
+      'border-bottom': '7px solid #000',
+      'border-left': '7px solid transparent',
+      'border-right': '7px solid transparent',
+      top: '-7px',
+      left: '50%',
+      'margin-left': '-7px'
+    }
+  },
+  left: {
+    '&:after': {
+      content: '""',
+      display: 'block',
+      position: 'absolute',
+      'border-right': 'none',
+      'border-left': '7px solid #000',
+      'border-top': '7px solid transparent',
+      'border-bottom': '7px solid transparent',
+      right: '-7px',
+      top: '50%',
+      'margin-top': '-7px'
+    }
   }
 };
 
@@ -84,8 +112,11 @@ var _jss$createStyleSheet = _jss2.default.createStyleSheet(styles).attach(),
     classes = _jss$createStyleSheet.classes;
 
 var propTypes = {
-  handleClick: _propTypes2.default.func.isRequired,
-  children: _propTypes2.default.node.isRequired
+  customClass: _propTypes2.default.string
+};
+
+var defaultProps = {
+  customClass: ''
 };
 
 var ReactTooltip = function (_Component) {
@@ -112,15 +143,25 @@ var ReactTooltip = function (_Component) {
       return function (e) {
         selector.innerText = e.target.getAttribute('tooltip');
         var place = e.target.getAttribute('tooltip-place');
+        var customClass = _this2.props.customClass;
+
         selector.style.opacity = '0.8';
         switch (place) {
           case 'top':
-            selector.className = 'vmo-fed-react-tooltip ' + classes.tooltip + ' ' + classes.top;
+            selector.className = 'vmo-fed-react-tooltip ' + customClass + ' ' + classes.tooltip + ' ' + classes.top;
             _this2.showTop(e, selector);
             break;
           case 'right':
-            selector.className = 'vmo-fed-react-tooltip ' + classes.tooltip + ' ' + classes.right;
+            selector.className = 'vmo-fed-react-tooltip ' + customClass + ' ' + classes.tooltip + ' ' + classes.right;
             _this2.showRight(e, selector);
+            break;
+          case 'bottom':
+            selector.className = 'vmo-fed-react-tooltip ' + customClass + ' ' + classes.tooltip + ' ' + classes.bottom;
+            _this2.showBottom(e, selector);
+            break;
+          case 'left':
+            selector.className = 'vmo-fed-react-tooltip ' + customClass + ' ' + classes.tooltip + ' ' + classes.left;
+            _this2.showLeft(e, selector);
             break;
           default:
             break;
@@ -130,8 +171,8 @@ var ReactTooltip = function (_Component) {
   }, {
     key: 'showTop',
     value: function showTop(e, selector) {
-      selector.style.left = e.target.offsetLeft + e.target.clientWidth / 2 - selector.clientWidth / 2 + 'px';
       selector.style.top = e.target.offsetTop - selector.clientHeight - 10 + 'px';
+      selector.style.left = e.target.offsetLeft + e.target.clientWidth / 2 - selector.clientWidth / 2 + 'px';
     }
   }, {
     key: 'showRight',
@@ -141,30 +182,36 @@ var ReactTooltip = function (_Component) {
     }
   }, {
     key: 'showLeft',
-    value: function showLeft() {}
+    value: function showLeft(e, selector) {
+      selector.style.top = e.target.offsetTop + e.target.clientHeight / 2 - selector.clientHeight / 2 + 'px';
+      selector.style.left = e.target.offsetLeft - selector.clientWidth - 10 + 'px';
+    }
   }, {
     key: 'showBottom',
-    value: function showBottom() {}
+    value: function showBottom(e, selector) {
+      selector.style.top = e.target.offsetTop + e.target.clientHeight + 10 + 'px';
+      selector.style.left = e.target.offsetLeft + e.target.clientWidth / 2 - selector.clientWidth / 2 + 'px';
+    }
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
       var _this3 = this;
 
       var tooltipSelector = document.querySelector('.vmo-fed-react-tooltip');
-      document.querySelectorAll('.app').forEach(function (selector) {
+      document.querySelectorAll('[tooltip]').forEach(function (selector) {
         selector.addEventListener('mouseenter', _this3.handleMouseleave(tooltipSelector));
       });
 
-      document.querySelectorAll('.app').forEach(function (selector) {
+      document.querySelectorAll('[tooltip]').forEach(function (selector) {
         selector.addEventListener('mouseleave', _this3.handleMouseenter(tooltipSelector));
       });
     }
   }, {
     key: 'render',
     value: function render() {
-      var children = this.props.children;
+      var customClass = this.props.customClass;
 
-      return _react2.default.createElement('div', { className: 'vmo-fed-react-tooltip ' + classes.tooltip });
+      return _react2.default.createElement('div', { className: 'vmo-fed-react-tooltip ' + customClass + ' ' + classes.tooltip });
     }
   }]);
 
@@ -172,5 +219,6 @@ var ReactTooltip = function (_Component) {
 }(_react.Component);
 
 ReactTooltip.propTypes = propTypes;
+ReactTooltip.defaultProps = defaultProps;
 
 exports.default = ReactTooltip;
