@@ -9,11 +9,12 @@ jss.use(jssNested(), jssExpand());
 
 const styles = {
   tooltip: {
-    position: 'absolute',
+    position: 'fixed',
     background: '#000',
     padding: '10px 20px',
     color: '#fff',
     opacity: 0,
+    'border-radius': '3px',
     display: 'inline-block',
     transition: 'opacity 0.3s ease',
   },
@@ -90,41 +91,37 @@ class ReactTooltip extends Component {
     super(props);
   }
 
-  handleMouseout(selector) {
+  handleMouseenter(selector) {
     return (e) => {
-      if (e.target.getAttribute('tooltip')) {
-        selector.style.opacity = '0';
-      }
+      selector.style.opacity = '0';
     }
   }
 
-  handleMouseenter(selector) {
+  handleMouseleave(selector) {
     return (e) => {
-      if (e.target.getAttribute('tooltip')) {
-        selector.innerText = e.target.getAttribute('tooltip');
-        const place = e.target.getAttribute('tooltip-place');
-        const { customClass } = this.props;
-        selector.style.opacity = '0.8';
-        switch (place) {
-          case 'top':
-            selector.className = `vmo-fed-react-tooltip ${customClass} ${classes.tooltip} ${classes.top}`;
-            this.showTop(e, selector);
-            break;
-          case 'right':
-            selector.className = `vmo-fed-react-tooltip ${customClass} ${classes.tooltip} ${classes.right}`;
-            this.showRight(e, selector);
-            break;
-          case 'bottom':
-            selector.className = `vmo-fed-react-tooltip ${customClass} ${classes.tooltip} ${classes.bottom}`;
-            this.showBottom(e, selector);
-            break;
-          case 'left':
-            selector.className = `vmo-fed-react-tooltip ${customClass} ${classes.tooltip} ${classes.left}`;
-            this.showLeft(e, selector);
-            break;
-          default:
-            break;
-        }
+      selector.innerText = e.target.getAttribute('tooltip');
+      const place = e.target.getAttribute('tooltip-place');
+      const { customClass } = this.props;
+      selector.style.opacity = '0.8';
+      switch (place) {
+        case 'top':
+          selector.className = `vmo-fed-react-tooltip ${customClass} ${classes.tooltip} ${classes.top}`;
+          this.showTop(e, selector);
+          break;
+        case 'right':
+          selector.className = `vmo-fed-react-tooltip ${customClass} ${classes.tooltip} ${classes.right}`;
+          this.showRight(e, selector);
+          break;
+        case 'bottom':
+          selector.className = `vmo-fed-react-tooltip ${customClass} ${classes.tooltip} ${classes.bottom}`;
+          this.showBottom(e, selector);
+          break;
+        case 'left':
+          selector.className = `vmo-fed-react-tooltip ${customClass} ${classes.tooltip} ${classes.left}`;
+          this.showLeft(e, selector);
+          break;
+        default:
+          break;
       }
     }
   }
@@ -151,8 +148,13 @@ class ReactTooltip extends Component {
 
   componentDidMount() {
     const tooltipSelector = document.querySelector('.vmo-fed-react-tooltip');
-    document.body.addEventListener('mouseover', this.handleMouseenter(tooltipSelector));
-    document.body.addEventListener('mouseout', this.handleMouseout(tooltipSelector));
+    document.querySelectorAll('[tooltip]').forEach((selector) => {
+      selector.addEventListener('mouseenter', this.handleMouseleave(tooltipSelector));
+    })
+
+    document.querySelectorAll('[tooltip]').forEach((selector) => {
+      selector.addEventListener('mouseleave', this.handleMouseenter(tooltipSelector));
+    })
   }
 
   render() {
