@@ -171,26 +171,26 @@ var ReactTooltip = function (_Component) {
   }, {
     key: 'showTop',
     value: function showTop(e, selector) {
-      selector.style.top = e.target.offsetTop - selector.clientHeight - 10 + 'px';
-      selector.style.left = e.target.offsetLeft + e.target.clientWidth / 2 - selector.clientWidth / 2 + 'px';
+      selector.style.top = e.target.getBoundingClientRect().y - selector.clientHeight - 10 + 'px';
+      selector.style.left = e.target.getBoundingClientRect().x + e.target.getBoundingClientRect().width / 2 - selector.clientWidth / 2 + 'px';
     }
   }, {
     key: 'showRight',
     value: function showRight(e, selector) {
-      selector.style.top = e.target.offsetTop + e.target.clientHeight / 2 - selector.clientHeight / 2 + 'px';
-      selector.style.left = e.target.offsetLeft + e.target.clientWidth + 10 + 'px';
+      selector.style.top = e.target.getBoundingClientRect().y + e.target.getBoundingClientRect().height / 2 - selector.clientHeight / 2 + 'px';
+      selector.style.left = e.target.getBoundingClientRect().x + e.target.getBoundingClientRect().width + 10 + 'px';
     }
   }, {
     key: 'showLeft',
     value: function showLeft(e, selector) {
-      selector.style.top = e.target.offsetTop + e.target.clientHeight / 2 - selector.clientHeight / 2 + 'px';
-      selector.style.left = e.target.offsetLeft - selector.clientWidth - 10 + 'px';
+      selector.style.top = e.target.getBoundingClientRect().y + e.target.getBoundingClientRect().height / 2 - selector.clientHeight / 2 + 'px';
+      selector.style.left = e.target.getBoundingClientRect().x - selector.clientWidth - 10 + 'px';
     }
   }, {
     key: 'showBottom',
     value: function showBottom(e, selector) {
-      selector.style.top = e.target.offsetTop + e.target.clientHeight + 10 + 'px';
-      selector.style.left = e.target.offsetLeft + e.target.clientWidth / 2 - selector.clientWidth / 2 + 'px';
+      selector.style.top = e.target.getBoundingClientRect().y + e.target.getBoundingClientRect().height + 10 + 'px';
+      selector.style.left = e.target.getBoundingClientRect().x + e.target.getBoundingClientRect().width / 2 - selector.clientWidth / 2 + 'px';
     }
   }, {
     key: 'componentDidMount',
