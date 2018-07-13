@@ -147,7 +147,7 @@ class ReactTooltip extends Component {
 
   componentDidMount() {
     const tooltipSelector = document.querySelector('.vmo-fed-react-tooltip');
-    document.querySelectorAll('.app').forEach((selector) => {
+    document.querySelectorAll('.tooltip').forEach((selector) => {
       selector.addEventListener('mouseenter', this.handleMouseleave(tooltipSelector));
     })
 

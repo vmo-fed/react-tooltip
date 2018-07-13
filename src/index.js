@@ -6,10 +6,10 @@ class HelloMessage extends React.Component {
   render() {
     return (
       <div>
-        <div className="app" style={{position: 'absolute', left: '400px', top: '400px', padding: '20px', backgroundColor: 'red'}} tooltip="第一个组件 向上" tooltip-place="top">向上</div>
-        <div className="app" style={{position: 'absolute', left: '300px', top: '300px', padding: '20px', backgroundColor: 'red'}} tooltip="第二个组件 向右" tooltip-place="right">向右</div>
-        <div className="app" style={{position: 'absolute', left: '200px', top: '200px', padding: '20px', backgroundColor: 'red'}} tooltip="第三个组件 向下" tooltip-place="bottom">向下</div>
-        <div className="app" style={{position: 'absolute', left: '100px', top: '100px', padding: '20px', backgroundColor: 'red'}} tooltip="第四个组件 向左" tooltip-place="left">向左</div>
+        <div className="tooltip" style={{position: 'absolute', left: '400px', top: '400px', padding: '20px', backgroundColor: 'red'}} tooltip="第一个组件 向上" tooltip-place="top">向上</div>
+        <div className="tooltip" style={{position: 'absolute', left: '300px', top: '300px', padding: '20px', backgroundColor: 'red'}} tooltip="第二个组件 向右" tooltip-place="right">向右</div>
+        <div className="tooltip" style={{position: 'absolute', left: '200px', top: '200px', padding: '20px', backgroundColor: 'red'}} tooltip="第三个组件 向下" tooltip-place="bottom">向下</div>
+        <div className="tooltip" style={{position: 'absolute', left: '100px', top: '100px', padding: '20px', backgroundColor: 'red'}} tooltip="第四个组件 向左" tooltip-place="left">向左</div>
         <ReactTooltip customClass="custom-tooltip"></ReactTooltip>
       </div>
     );
