@@ -55,6 +55,6 @@ class HelloMessage extends React.Component {
 
 如果需要改变背景色，tooltip中的箭头也需要跟着修改，可以参照如下的在线demo
 
-[在线demo](https://codesandbox.io/s/jp3pzvm3q5)
+[在线demo](https://codesandbox.io/s/0p0vlrqo5p)
 
 [在线文档](https://vmo-fed.github.io/react-tooltip/doc/#/react-tooltip/doc/react-tooltip)
