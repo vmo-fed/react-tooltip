@@ -4,10 +4,16 @@ import jss from 'jss'
 import preset from 'jss-preset-default'
 import jssNested from 'jss-nested'
 import jssExpand from 'jss-expand'
+import jssGlobal from 'jss-global'
 
-jss.use(jssNested(), jssExpand());
+jss.use(jssNested(), jssExpand(), jssGlobal());
 
 const styles = {
+  '@global': {
+    '[tooltip] *': {
+      'pointer-events': 'none'
+    }
+  },
   tooltip: {
     position: 'fixed',
     background: '#000',
