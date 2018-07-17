@@ -30,6 +30,10 @@ var _jssExpand = require('jss-expand');
 
 var _jssExpand2 = _interopRequireDefault(_jssExpand);
 
+var _jssGlobal = require('jss-global');
+
+var _jssGlobal2 = _interopRequireDefault(_jssGlobal);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -38,9 +42,14 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-_jss2.default.use((0, _jssNested2.default)(), (0, _jssExpand2.default)());
+_jss2.default.use((0, _jssNested2.default)(), (0, _jssExpand2.default)(), (0, _jssGlobal2.default)());
 
 var styles = {
+  '@global': {
+    '[tooltip] *': {
+      'pointer-events': 'none'
+    }
+  },
   tooltip: {
     position: 'fixed',
     background: '#000',
