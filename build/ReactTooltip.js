@@ -155,6 +155,8 @@ var ReactTooltip = function (_Component) {
       return function (e) {
         if (e.target.getAttribute('tooltip')) {
           selector.style.opacity = '0';
+          selector.style.left = '-999px';
+          selector.style.top = '-999px';
         }
       };
     }
