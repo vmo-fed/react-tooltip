@@ -14,6 +14,10 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
+var _classname2 = require('classname');
+
+var _classname3 = _interopRequireDefault(_classname2);
+
 var _jss = require('jss');
 
 var _jss2 = _interopRequireDefault(_jss);
@@ -35,6 +39,8 @@ var _jssGlobal = require('jss-global');
 var _jssGlobal2 = _interopRequireDefault(_jssGlobal);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -135,7 +141,12 @@ var ReactTooltip = function (_Component) {
   function ReactTooltip(props) {
     _classCallCheck(this, ReactTooltip);
 
-    return _possibleConstructorReturn(this, (ReactTooltip.__proto__ || Object.getPrototypeOf(ReactTooltip)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (ReactTooltip.__proto__ || Object.getPrototypeOf(ReactTooltip)).call(this, props));
+
+    _this.state = {
+      scopedClass: ''
+    };
+    return _this;
   }
 
   _createClass(ReactTooltip, [{
@@ -158,22 +169,23 @@ var ReactTooltip = function (_Component) {
           var place = e.target.getAttribute('tooltip-place');
           var customClass = _this2.props.customClass;
 
+          var scopedClass = (0, _classname3.default)(_defineProperty({}, e.target.getAttribute('tooltip-class'), !!e.target.getAttribute('tooltip-class')));
           selector.style.opacity = '0.8';
           switch (place) {
             case 'top':
-              selector.className = 'vmo-fed-react-tooltip ' + customClass + ' ' + classes.tooltip + ' ' + classes.top;
+              selector.className = 'vmo-fed-react-tooltip ' + customClass + ' ' + classes.tooltip + ' ' + classes.top + ' ' + scopedClass;
               _this2.showTop(e, selector);
               break;
             case 'right':
-              selector.className = 'vmo-fed-react-tooltip ' + customClass + ' ' + classes.tooltip + ' ' + classes.right;
+              selector.className = 'vmo-fed-react-tooltip ' + customClass + ' ' + classes.tooltip + ' ' + classes.right + ' ' + scopedClass;
               _this2.showRight(e, selector);
               break;
             case 'bottom':
-              selector.className = 'vmo-fed-react-tooltip ' + customClass + ' ' + classes.tooltip + ' ' + classes.bottom;
+              selector.className = 'vmo-fed-react-tooltip ' + customClass + ' ' + classes.tooltip + ' ' + classes.bottom + ' ' + scopedClass;
               _this2.showBottom(e, selector);
               break;
             case 'left':
-              selector.className = 'vmo-fed-react-tooltip ' + customClass + ' ' + classes.tooltip + ' ' + classes.left;
+              selector.className = 'vmo-fed-react-tooltip ' + customClass + ' ' + classes.tooltip + ' ' + classes.left + ' ' + scopedClass;
               _this2.showLeft(e, selector);
               break;
             default:
