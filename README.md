@@ -53,7 +53,21 @@ class HelloMessage extends React.Component {
 }
 ```
 
-如果需要改变背景色，tooltip中的箭头也需要跟着修改，可以参照如下的在线demo
+### 高级用法
+
+如果你希望在不同的组件中使用不同样式的tooltip，可以使用tooltip-class属性，如tooltip-class="scoped-tooltip-top"，然后添加自定义样式即可
+
+```css
+body .scoped-style-top {
+  background-color: yellow;
+  color: #000;
+  width: 200px;
+}
+
+body .scoped-style-top::after {
+  border-top-color: yellow;
+}
+```
 
 [在线demo](https://codesandbox.io/s/rrl5x2nqvo)
 
