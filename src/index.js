@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import ReactTooltip  from './ReactTooltip';
+import './style.css';
 
 class HelloMessage extends React.Component {
   render() {
@@ -10,10 +11,11 @@ class HelloMessage extends React.Component {
         <div style={{position: 'absolute', left: '300px', top: '300px', padding: '20px', backgroundColor: 'red'}} tooltip="第二个组件 向右" tooltip-place="right">向右</div>
         <div style={{position: 'absolute', left: '200px', top: '200px', padding: '20px', backgroundColor: 'red'}} tooltip="第三个组件 向下" tooltip-place="bottom">向下</div>
         <div style={{position: 'absolute', left: '100px', top: '100px', padding: '20px', backgroundColor: 'red'}} tooltip="第四个组件 向左" tooltip-place="left">向左</div>
-        <div style={{position: 'absolute', left: '500px', top: '500px', padding: '20px', backgroundColor: 'red'}} tooltip="第四个组件 向左" tooltip-place="left">
+        <div style={{position: 'absolute', left: '500px', top: '500px', padding: '20px', backgroundColor: 'red'}} tooltip="第五个组件 嵌套组件" tooltip-place="left">
           <div>123</div>
           <div>456</div>
         </div>
+        <div style={{position: 'absolute', left: '600px', top: '600px', padding: '20px', backgroundColor: 'red'}} tooltip="第六个组件 局部定义样式" tooltip-place="top" tooltip-class="scoped-style-top">向上</div>
         <ReactTooltip customClass="custom-tooltip"></ReactTooltip>
       </div>
     );

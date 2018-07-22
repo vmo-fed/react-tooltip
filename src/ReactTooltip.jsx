@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import jss from 'jss'
-import preset from 'jss-preset-default'
-import jssNested from 'jss-nested'
-import jssExpand from 'jss-expand'
-import jssGlobal from 'jss-global'
+import classname from 'classname';
+import jss from 'jss';
+import preset from 'jss-preset-default';
+import jssNested from 'jss-nested';
+import jssExpand from 'jss-expand';
+import jssGlobal from 'jss-global';
 
 jss.use(jssNested(), jssExpand(), jssGlobal());
 
@@ -95,6 +96,9 @@ const defaultProps = {
 class ReactTooltip extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      scopedClass: ''
+    }
   }
 
   handleMouseout(selector) {
@@ -111,22 +115,25 @@ class ReactTooltip extends Component {
         selector.innerText = e.target.getAttribute('tooltip');
         const place = e.target.getAttribute('tooltip-place');
         const { customClass } = this.props;
+        const scopedClass = classname({
+          [e.target.getAttribute('tooltip-class')]: !!e.target.getAttribute('tooltip-class')
+        });
         selector.style.opacity = '0.8';
         switch (place) {
           case 'top':
-            selector.className = `vmo-fed-react-tooltip ${customClass} ${classes.tooltip} ${classes.top}`;
+            selector.className = `vmo-fed-react-tooltip ${customClass} ${classes.tooltip} ${classes.top} ${scopedClass}`;
             this.showTop(e, selector);
             break;
           case 'right':
-            selector.className = `vmo-fed-react-tooltip ${customClass} ${classes.tooltip} ${classes.right}`;
+            selector.className = `vmo-fed-react-tooltip ${customClass} ${classes.tooltip} ${classes.right} ${scopedClass}`;
             this.showRight(e, selector);
             break;
           case 'bottom':
-            selector.className = `vmo-fed-react-tooltip ${customClass} ${classes.tooltip} ${classes.bottom}`;
+            selector.className = `vmo-fed-react-tooltip ${customClass} ${classes.tooltip} ${classes.bottom} ${scopedClass}`;
             this.showBottom(e, selector);
             break;
           case 'left':
-            selector.className = `vmo-fed-react-tooltip ${customClass} ${classes.tooltip} ${classes.left}`;
+            selector.className = `vmo-fed-react-tooltip ${customClass} ${classes.tooltip} ${classes.left} ${scopedClass}`;
             this.showLeft(e, selector);
             break;
           default:
